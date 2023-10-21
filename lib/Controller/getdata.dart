@@ -14,13 +14,11 @@ class DataController extends GetxController {
    if(prefs.getString('my_json_data')!=null){
     // addData(prefs.getString('my_json_data'));
      Map<String, dynamic> jsonData = jsonDecode(prefs.getString('my_json_data').toString());
-     print(jsonData);
      addData(jsonData);
     // print(jsonDecode(prefs.getString('my_json_data').toString()).runtimeType);
    }
    else{
      fetchData();
-     print("me nopt here");
 
    }
  }
@@ -50,10 +48,9 @@ class DataController extends GetxController {
       final response = await _dataService.fetchData();
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('my_json_data', jsonEncode(response));
-      print("respo datatype:${response.runtimeType}");
       await addData(response);
     } catch (e) {
-      print("jiiii:${e}");
+      //print("jiiii:${e}");
       // Handle errors
     }
   }
